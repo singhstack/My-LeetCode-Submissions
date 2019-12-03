@@ -1,0 +1,20 @@
+Given an array of strings, group anagrams together.
+
+Example:
+
+Input: ["eat", "tea", "tan", "ate", "nat", "bat"],
+Output:
+[
+  ["ate","eat","tea"],
+  ["nat","tan"],
+  ["bat"]
+]
+------------------------
+class Solution(object):
+    def groupAnagrams(self, strs):
+        dic={}
+        for w in strs:
+            key = tuple(sorted(w))
+            dic[key] = dic.get(key, []) + [w]
+        return dic.values()
+        
