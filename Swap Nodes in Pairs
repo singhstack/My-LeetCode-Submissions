@@ -1,0 +1,30 @@
+Given a linked list, swap every two adjacent nodes and return its head.
+
+You may not modify the values in the list's nodes, only nodes itself may be changed.
+
+ 
+
+Example:
+
+Given 1->2->3->4, you should return the list as 2->1->4->3.
+------------------------------------------------------------
+class Solution:
+    
+    def swapPairs(self, head):
+
+        dummyhead = ListNode(None)
+        node,prev = head,dummyhead
+        if node==None or node.next==None:
+            return node
+        while node!=None and node.next!=None:
+            prev.next = self.swap(node,node.next)
+            prev=prev.next.next
+            node=prev.next
+
+        return dummyhead.next
+
+    def swap(self,n1,n2):
+        temp = n2.next
+        n2.next = n1
+        n1.next = temp
+        return n2
