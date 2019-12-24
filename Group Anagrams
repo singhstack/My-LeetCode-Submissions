@@ -9,7 +9,7 @@ Output:
   ["nat","tan"],
   ["bat"]
 ]
-------------------------
+-------------------------
 class Solution(object):
     def groupAnagrams(self, strs):
         dic={}
