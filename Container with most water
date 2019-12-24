@@ -22,5 +22,5 @@ class Solution:
             #print(height[r],height[l])
             if area>maxarea:
                 maxarea=area
-        return maxarea
+        return maxarea #TS
         
