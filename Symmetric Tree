@@ -1,0 +1,61 @@
+'''
+Given a binary tree, check whether it is a mirror of itself (ie, symmetric around its center).
+
+For example, this binary tree [1,2,2,3,4,4,3] is symmetric:
+'''
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution:
+    def checkchildren(self,node1,node2):
+        #Solution
+        
+        if not node1 and not node2:
+            return True
+        if not node1 or not node2:
+            return False
+        return (node1.val==node2.val) and self.checkchildren(node1.left,node2.right) and self.checkchildren(node1.right,node2.left)
+        
+        #Solution mine
+        '''cond1=(node1.left and node2.right)
+        cond2=(node1.right and node2.left) 
+        cond3=node1.val==node2.val
+        
+        if not node1.left and not node2.right and not node1.right and not node2.left:
+            return cond3
+        if cond1 and cond2:
+            x1= self.checkchildren(node1.left,node2.right)
+            x2= self.checkchildren(node1.right,node2.left)
+            return (x1 and x2 and cond3)
+        if cond1 and not cond2:
+            if node1.right or node2.left:
+                return False
+            x1= self.checkchildren(node1.left,node2.right)
+            return (x1 and cond3)
+        if cond2 and not cond1:
+            if node1.left or node2.right:
+                return False
+            print("hydf")
+            x2= self.checkchildren(node1.right,node2.left)
+            return (x2 and cond3)
+        
+        if not cond1 and not cond2:
+            return False'''
+        
+    def isSymmetric(self, root: TreeNode) -> bool:
+        if root:
+            return self.checkchildren(root,root)
+        return True
+        '''if root:
+            if root.left and root.right:
+                if root.left.val==root.right.val:
+                    return self.checkchildren(root.left,root.right)
+                return False
+            if root.left or root.right:
+                return False
+        return True'''
