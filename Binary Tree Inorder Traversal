@@ -1,0 +1,52 @@
+'''
+Given a binary tree, return the inorder traversal of its nodes' values.
+'''
+
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution:
+    #Recursive using helper is trivial
+    '''def helper(self,root,res):
+        if root:
+            self.helper(root.left,res)
+            res.append(root.val)
+            self.helper(root.right,res)'''
+            
+    def inorderTraversal(self, root: TreeNode) -> List[int]:
+        #Reverse Inorder TRaversel
+        res,stack=[],[]
+        while True:
+            while root:
+                stack.append(root)
+                root=root.left
+            if not stack:
+                return res
+            node=stack.pop()
+            res.append(node.val)
+            root=node.right
+            
+        #Recursive method
+        '''res=[]
+        self.helper(root,res)
+        return res
+        #Iterative method
+        res,stack=[],[]
+        while True:
+            while root:
+                stack.append(root)
+                root=root.left
+            if not stack:
+                return res
+            node=stack.pop()
+            print("Popped: ",node.val)
+            res.append(node.val)
+            root=node.right
+            if root:
+                print(root.val)'''
+        
