@@ -1,0 +1,120 @@
+'''
+Given two integers dividend and divisor, divide two integers without using multiplication, division and mod operator.
+
+Return the quotient after dividing dividend by divisor.
+
+The integer division should truncate toward zero.
+
+Example 1:
+
+Input: dividend = 10, divisor = 3
+Output: 3
+Example 2:
+
+Input: dividend = 7, divisor = -3
+Output: -2
+Note:
+
+Both dividend and divisor will be 32-bit signed integers.
+The divisor will never be 0.
+Assume we are dealing with an environment which could only store integers within the 32-bit signed integer range: [−231,  231 − 1]. For the purpose of this problem, assume that your function returns 231 − 1 when the division result overflows.
+'''
+
+class Solution:
+    def divide(self, dividend: int, divisor: int) -> int:
+        q=1
+        a = abs(divisor)
+        sign=1
+        
+        if dividend*divisor<0:
+            sign=-1
+        
+        
+        finalq = 0
+        
+        prevDiv=None
+        prevq=None
+        
+        divisor = abs(divisor)
+        dividend = abs(dividend)
+        
+        
+        
+        while(True):
+            while(divisor<=dividend):
+                preDiv = divisor
+                prevq = q
+                
+                divisor+= divisor
+                q+=q
+            
+            if q==1:
+                break
+            
+            finalq += prevq
+            dividend-=preDiv
+            
+            if dividend==0:
+                break
+            
+            
+            q=1
+            divisor = a
+
+        
+       
+        
+        if sign*(finalq)<-1*pow(2,31):
+            return pow(2,31)-1
+        elif sign*(finalq)>(pow(2,31)-1):
+            return pow(2,31)-1
+        
+        
+        return sign*(finalq)
+    
+'''class Solution:
+# @return an integer
+    def divide(self, dividend, divisor):
+        positive = (dividend < 0) is (divisor < 0)
+        dividend, divisor = abs(dividend), abs(divisor)
+        res = 0
+        while dividend >= divisor:
+            temp, i = divisor, 1
+            while dividend >= temp:
+                dividend -= temp
+                res += i
+                i <<= 1
+                temp <<= 1
+                print(dividend,temp,res,i)
+        if not positive:
+            res = -res
+        return min(max(-2147483648, res), 2147483647)'''
+'''
+class Solution:
+    def divide(self, dividend: int, divisor: int) -> int:
+        sign=0
+        if dividend*divisor<0:
+            sign=1
+        quo=0
+        divd=abs(dividend)
+        temp_divd=divd
+        divs=abs(divisor)
+        progress=0
+        if temp_divd>=divs:
+            temp_divd-=divs
+            progress=divd-temp_divd
+            quo+=1
+        while(progress<(temp_divd/2)):
+            temp_divd-=progress
+            progress+=progress
+            quo+=quo
+            print("Hello")
+            continue
+        while(temp_divd>=divs):
+            temp_divd-=divs
+            quo+=1
+            progress+=divs
+        if sign:
+            quo*=-1
+        return quo'''
+        
