@@ -1,0 +1,37 @@
+Merge k sorted linked lists and return it as one sorted list. Analyze and describe its complexity.
+
+Example:
+
+Input:
+[
+  1->4->5,
+  1->3->4,
+  2->6
+]
+Output: 1->1->2->3->4->4->5->6
+
+************************************************
+
+class Solution:
+    def mergeKLists(self, lists: List[ListNode]) -> ListNode:
+        #temporary node for each 'node' iteration
+        temp=ListNode(0)
+        temp=temp.next
+        if not lists:
+            return []
+        for node in lists:
+            #curr is the output after each iteration, dummy maintained to obt curr head after iteration
+            curr=dummy=ListNode(0)
+            while(node and temp):
+                if node.val<temp.val:
+                    curr.next=node
+                    node=node.next
+                else:
+                    curr.next=temp
+                    temp=temp.next
+                curr=curr.next
+            curr.next=node or temp
+            #curr's head(dummy.next) handed over to temp before the beginning of next iteration
+            temp=dummy.next
+            
+        return temp
